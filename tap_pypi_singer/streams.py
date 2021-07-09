@@ -7,7 +7,6 @@ from tap_pypi_singer.client import PyPISingerStream
 
 class UsageStream(PyPISingerStream):
     name = "usage_stream"
-    path = ""
     schema = th.PropertiesList(
         th.Property(
             "data", th.ObjectType(

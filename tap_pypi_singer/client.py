@@ -37,7 +37,7 @@ class PyPISingerStream(RESTStream):
         response = requests.get("/".join([self.url_base, plugin, "recent"]))
         return response.status_code == 200
 
-    def get_plugin(self):
+    def get_pypi_available_plugin(self):
         for plugin in self.plugins:
             self.plugins.remove(plugin)
             plugin_name = plugin.get("singer_name")
@@ -49,7 +49,7 @@ class PyPISingerStream(RESTStream):
         if not self.plugins:
             self.set_meltano_plugins()
 
-        plugin = self.get_plugin()
+        plugin = self.get_pypi_available_plugin()
         self.path = plugin
         return "/".join([self.url_base, plugin, "recent"])
 
