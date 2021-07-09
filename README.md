@@ -1,11 +1,9 @@
 # tap-pypi-singer
 
 `tap-pypi-singer` is a Singer tap for retrieving the plugins supported by Meltano via the [MeltanoHub API](https://hub.meltano.com/singer/#api-resources)
-then retrieving usage stats for their pypi packages.
-
-This uses the API https://pypistats.org/api/ which has a rate limiter so it [shouldnt be abused](https://pypistats.org/api/#etiquette).
-Theres sleeper logic to accept rate limit responses and continue. Meltano only supports a few hundred plugins right now but
-the big query data set can be used if the list of plugins gets too large.
+then retrieving usage stats for their pypi packages using https://pepy.tech/ website's API. The pepy website returns
+unaggregated download counts split by version so this tap aggregates up to total, day, week, and month level without
+considering the package version.
 
 Built with the Meltano [SDK](https://gitlab.com/meltano/sdk) for Singer Taps.
 
